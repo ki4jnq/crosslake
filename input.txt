@@ -1,0 +1,13 @@
+REPORT R1
+Track T1 R1 Architecture
+Indicator I1 T1 99 1
+Indicator I2 T1 67 5
+Track T2 R1 SDLC
+Indicator I3 T2 57 1
+Indicator I4 T2 42 4
+Indicator I5 T2 78 2
+Indicator I6 T2 90 2
+Track T3 R1 Security
+Indicator I7 T3 81 1
+Indicator I8 T3 55 3
+Indicator I9 T3 88 1
