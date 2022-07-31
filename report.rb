@@ -5,6 +5,8 @@ require 'ostruct'
 
 require './lib/parser'
 
+
+# Parse the CLI options.
 options = OpenStruct.new(
   inputs: [],
   output: $stdout,
@@ -20,7 +22,7 @@ OptionParser.new do |opt|
   end
 end.parse!
 
-
+# Parse the input documents.
 parser = Lib::Parser.new
 
 options.inputs.each do |input|

@@ -13,22 +13,11 @@ module Lib
       @indicators = {}
     end
 
-    #def score_for(**args)
-    #  case args
-    #  in report_id: id
-    #    @reports[id].score
-    #  in track_id: id
-    #    @tracks[id].score
-    #  in indicator_id: id
-    #    @indicators[id].weighted_score
-    #  end
-    #end
-
     def generate_report(out)
       @reports.each do |_, report|
         out.puts "Report #{report.id} Overall Score: #{report.score}"
         report.tracks.each do |_, track|
-          out.puts "Track T1 Score: #{track.score}"
+          out.puts "Track #{track.id} Score: #{track.score}"
         end
       end
     end
