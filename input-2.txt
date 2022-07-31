@@ -1,0 +1,13 @@
+REPORT R2
+Track T4 R2 Artistry
+Indicator I10 T4 90 1
+Indicator I11 T4 47 2
+Track T5 R2 Tapestry
+Indicator I12 T5 27 1
+Indicator I13 T5 42 1
+Indicator I14 T5 70 2
+Indicator I15 T5 83 3
+Track T6 R2 Intepretive_Dance
+Indicator I16 T6 81 1
+Indicator I17 T6 75 3
+Indicator I18 T6 88 2

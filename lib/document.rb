@@ -24,6 +24,15 @@ module Lib
       end
     end
 
+    def generate_report(out)
+      @reports.each do |_, report|
+        out.puts "Report #{report.id} Overall Score: #{report.score}"
+        report.tracks.each do |_, track|
+          out.puts "Track T1 Score: #{track.score}"
+        end
+      end
+    end
+
     def <<(entry)
       add_report(entry) and return self if entry.is_a? Report
       add_track(entry) and return self if entry.is_a? Track
