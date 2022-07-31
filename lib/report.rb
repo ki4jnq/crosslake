@@ -9,6 +9,8 @@ module Lib
     end
 
     def <<(track)
+      raise TrackAlreadyAdded.new(track.id, id) if @tracks.include? track.id
+
       @tracks[track.id] = track
       self
     end

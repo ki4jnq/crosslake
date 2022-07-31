@@ -13,16 +13,16 @@ module Lib
       @indicators = {}
     end
 
-    def score_for(**args)
-      case args
-      in report_id: id
-        @reports[id].score
-      in track_id: id
-        @tracks[id].score
-      in indicator_id: id
-        @indicators[id].weighted_score
-      end
-    end
+    #def score_for(**args)
+    #  case args
+    #  in report_id: id
+    #    @reports[id].score
+    #  in track_id: id
+    #    @tracks[id].score
+    #  in indicator_id: id
+    #    @indicators[id].weighted_score
+    #  end
+    #end
 
     def generate_report(out)
       @reports.each do |_, report|
@@ -39,13 +39,15 @@ module Lib
       add_indicator(entry) and return self if entry.is_a? Indicator
     end
 
+    private
+
     def add_report(report)
       @reports[report.id] = report
     end
 
     def add_track(track)
       report = @reports[track.report_id]
-      raise ReportNotDefined.new(report_id, track.id) unless report
+      raise ReportNotDefined.new(track.report_id, track.id) unless report
 
       @tracks[track.id] = track
       report << track
@@ -53,7 +55,7 @@ module Lib
 
     def add_indicator(indicator)
       track = @tracks[indicator.track_id]
-      raise TrackNotDefined.new(track_id, indicator.id) unless track
+      raise TrackNotDefined.new(indicator.track_id, indicator.id) unless track
 
       @indicators[indicator.id] = indicator
       track << indicator

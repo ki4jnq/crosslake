@@ -11,6 +11,8 @@ module Lib
     end
 
     def <<(indicator)
+      raise IndicatorAlreadyAdded.new(indicator.id, id) if indicators.include? indicator.id
+
       @indicators[indicator.id] = indicator
       self
     end
