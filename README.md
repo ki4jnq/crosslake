@@ -108,4 +108,43 @@ allowing us to execute the parser and generate the report from the CLI. It
 sets up the command line options, opens and closes input files, and directs
 the output to its final destination.
 
-Keeping this piece as small as possible allows for maximum code reuse.
+Keeping this piece as small as possible allows for maximum code reuse and the
+best test coverage. Since, it interacts the most with the host system, its the
+most difficult to test. As it includes no business logic, anything that breaks
+here will more than likely be immediately noticeable by the operator (things
+like invalid filenames).
+
+
+### Test Design
+
+Tests throughout the application focus on three main things:
+
+1. Is the business logic implemented by a given object correct?
+2. For a given input, do the object APIs return the expected output?
+3. Do the APIs handle common edge cases gracefully?
+
+While testing for #1, much of #2 is done automatically, but extra tests are
+included where that is not the case. For example, when adding a Track to the
+overall Document, we also add it to the Report it references. This forms an
+API where all entities of a particular type can be easily iterated, but also
+allows iterating all children of a particular entity. Report generation relies
+on this behavior, and it is easy to imagine other use cases that would as
+well. While this is not business logic, per se, its useful to ensure that the
+Document remains well formed as new entities are added.
+
+As much as possible, the output is checked for proper form and data. As an
+example, the generated report is exhaustively tested for all tracks, reports,
+and their respective scores. This makes sure that a blank value doesn't slip
+through, and a user doesn't see something like a Track with no score in the
+report.
+
+For #3, invalid data is intentionally fed into the test, and an expectation
+checks for an error of a particular type. This provides confidence that
+application is correctly validating its inputs, and the tests aren't simply
+passing because they are poorly written. Easily anticipated edge cases are
+added up front, but more would be written if more were discovered.
+
+If the application included an external API, such as a REST interface, it
+would be highly desireable to test that as well. Since there would likely be
+multiple client applications dependent on the API, it's imperative that it
+remain stable.
