@@ -38,16 +38,16 @@ module Lib
       report = @reports[track.report_id]
       raise ReportNotDefined.new(track.report_id, track.id) unless report
 
-      @tracks[track.id] = track
       report << track
+      @tracks[track.id] = track
     end
 
     def add_indicator(indicator)
       track = @tracks[indicator.track_id]
       raise TrackNotDefined.new(indicator.track_id, indicator.id) unless track
 
-      @indicators[indicator.id] = indicator
       track << indicator
+      @indicators[indicator.id] = indicator
     end
 
   end

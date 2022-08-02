@@ -27,6 +27,7 @@ parser = Lib::Parser.new
 
 options.inputs.each do |input|
   parser.parse input
+  input.close unless input.equal? $stdin
 end
 
 parser.document.generate_report(options.output)
