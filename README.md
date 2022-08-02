@@ -1,6 +1,6 @@
 ## Crosslake Tech Code Challenge
 
-This program takes one or more text files in well structured format, and
+This program takes one or more text files in a well structured format, and
 reports a summary of all inputs.
 
 ### Running
